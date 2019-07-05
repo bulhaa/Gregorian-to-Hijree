@@ -19,7 +19,7 @@
       $year_start = strtotime($row->year_start);
       $year = $row->year;
 
-      $days = commonHelper::timeStampDifference($date, $year_start) + 1;
+      $days = timeStampDifference($date, $year_start) + 1;
 
       if($days <= $row->days_in_month_1){
         $month = 1;
@@ -111,3 +111,13 @@
     }
     return $dateArr;
   }
+        
+        
+  function timeStampDifference($date_1 , $date_2 , $differenceFormat = '%a' )
+  {
+      $datetime1 = date("Y-m-d", $date_1);
+      $datetime2 = date("Y-m-d", $date_2);
+
+      return commonHelper::dateDifference($datetime1, $datetime2, $differenceFormat);
+  }
+
