@@ -21,75 +21,15 @@
 
       $days = timeStampDifference($date, $year_start) + 1;
 
-      if($days <= $row->days_in_month_1){
-        $month = 1;
-      }else{
-        $days = $days - $row->days_in_month_1;
-
-        if($days <= $row->days_in_month_2){
-          $month = 2;
+      for($month = 1; $month <= 12; $month++){
+        $days_in_month = $row->{'days_in_month_'.$month};
+        if($days <= $days_in_month){
+          break;
         }else{
-          $days = $days - $row->days_in_month_2;
+          $days = $days - $days_in_month;
 
-          if($days <= $row->days_in_month_3){
-            $month = 3;
-          }else{
-            $days = $days - $row->days_in_month_3;
-
-            if($days <= $row->days_in_month_4){
-              $month = 4;
-            }else{
-              $days = $days - $row->days_in_month_4;
-
-              if($days <= $row->days_in_month_5){
-                $month = 5;
-              }else{
-                $days = $days - $row->days_in_month_5;
-
-                if($days <= $row->days_in_month_6){
-                  $month = 6;
-                }else{
-                  $days = $days - $row->days_in_month_6;
-
-                  if($days <= $row->days_in_month_7){
-                    $month = 7;
-                  }else{
-                    $days = $days - $row->days_in_month_7;
-
-                    if($days <= $row->days_in_month_8){
-                      $month = 8;
-                    }else{
-                      $days = $days - $row->days_in_month_8;
-
-                      if($days <= $row->days_in_month_9){
-                        $month = 9;
-                      }else{
-                        $days = $days - $row->days_in_month_9;
-
-                        if($days <= $row->days_in_month_10){
-                          $month = 10;
-                        }else{
-                          $days = $days - $row->days_in_month_10;
-
-                          if($days <= $row->days_in_month_11){
-                            $month = 11;
-                          }else{
-                            $days = $days - $row->days_in_month_11;
-
-                            if($days <= $row->days_in_month_12){
-                              $month = 12;
-                            }else{
-                              $days = null;
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
+          if($month == 12)
+            $days = null;
         }
       }
     }
